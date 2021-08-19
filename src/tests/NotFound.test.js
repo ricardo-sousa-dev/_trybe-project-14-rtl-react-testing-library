@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 
-describe('2. Teste o componente <About.js />.', () => {
+describe('Teste o componente <NotFound.js />', () => {
   test('Teste H2 título página', () => {
     render(<NotFound />);
     const titleNotFound = screen.getByRole('heading', {
