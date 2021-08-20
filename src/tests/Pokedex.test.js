@@ -113,13 +113,4 @@ describe('Teste o componente <Pokedex.js', () => {
       allPokemons();
     });
   });
-
-  // test('Ao carregar a página, o filtro selecionado deverá ser All', () => {
-  //   renderWithRouter(<App />);
-  //   onePokemonTypes.forEach((pokemonType, index) => {
-  //     userEvent.click(screen.getAllByTestId(typeButtonTestId)[index]);
-  //     userEvent.click(screen.getByRole('button', { name: /all/i }));
-  //     allPokemons();
-  //   });
-  // });
 });
