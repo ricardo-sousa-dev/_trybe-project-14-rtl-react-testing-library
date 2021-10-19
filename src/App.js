@@ -19,28 +19,28 @@ import pokemons from './data';
 import './App.css';
 
 class App extends Component {
-  static setIsPokemonFavoriteById() {
+  static setIsPokemonFavoriteById () {
     const favoritePokemonIds = readFavoritePokemonIds();
-    const isPokemonFavorite = pokemons.reduce((acc, pokemon) => {
-      acc[pokemon.id] = favoritePokemonIds.includes(pokemon.id);
+    const isPokemonFavorite = pokemons.reduce( ( acc, pokemon ) => {
+      acc[ pokemon.id ] = favoritePokemonIds.includes( pokemon.id );
       return acc;
-    }, {});
+    }, {} );
 
     return isPokemonFavorite;
   }
 
-  constructor(props) {
-    super(props);
+  constructor( props ) {
+    super( props );
     this.state = { isPokemonFavoriteById: App.setIsPokemonFavoriteById() };
   }
 
-  onUpdateFavoritePokemons(pokemonId, isFavorite) {
-    updateFavoritePokemons(pokemonId, isFavorite);
+  onUpdateFavoritePokemons ( pokemonId, isFavorite ) {
+    updateFavoritePokemons( pokemonId, isFavorite );
 
-    this.setState(({ isPokemonFavoriteById: App.setIsPokemonFavoriteById() }));
+    this.setState( ( { isPokemonFavoriteById: App.setIsPokemonFavoriteById() } ) );
   }
 
-  renderPokedex() {
+  renderPokedex () {
     const { isPokemonFavoriteById } = this.state;
 
     return (
@@ -51,7 +51,7 @@ class App extends Component {
     );
   }
 
-  renderPokemonDetails(match) {
+  renderPokemonDetails ( match ) {
     const { isPokemonFavoriteById } = this.state;
 
     return (
@@ -59,27 +59,27 @@ class App extends Component {
         isPokemonFavoriteById={ isPokemonFavoriteById }
         match={ match }
         pokemons={ pokemons }
-        onUpdateFavoritePokemons={ (pokemonId, isFavorite) => (
-          this.onUpdateFavoritePokemons(pokemonId, isFavorite)
+        onUpdateFavoritePokemons={ ( pokemonId, isFavorite ) => (
+          this.onUpdateFavoritePokemons( pokemonId, isFavorite )
         ) }
       />
     );
   }
 
-  renderRoutes() {
+  renderRoutes () {
     const { isPokemonFavoriteById } = this.state;
-    const favoritePokemons = pokemons.filter(({ id }) => isPokemonFavoriteById[id]);
+    const favoritePokemons = pokemons.filter( ( { id } ) => isPokemonFavoriteById[ id ] );
 
     return (
       <Switch>
         <Route
           exact
           path="/"
-          render={ ({ match }) => this.renderPokedex(match) }
+          render={ ( { match } ) => this.renderPokedex( match ) }
         />
         <Route
           path="/pokemons/:id"
-          render={ ({ match }) => this.renderPokemonDetails(match) }
+          render={ ( { match } ) => this.renderPokemonDetails( match ) }
         />
         <Route
           path="/favorites"
@@ -91,16 +91,16 @@ class App extends Component {
     );
   }
 
-  render() {
+  render () {
     return (
       <div className="App">
         <h1>Pokédex</h1>
         <nav>
-          <Link className="link" to="/">{`Home`}</Link>
-          <Link className="link" to="/about">{`About`}</Link>
-          <Link className="link" to="/favorites">{`Favorite Pokémons`}</Link>
+          <Link className="link" to="/">{ `Home` }</Link>
+          <Link className="link" to="/about">{ `About` }</Link>
+          <Link className="link" to="/favorites">{ `Favorite Pokémons` }</Link>
         </nav>
-        {this.renderRoutes()}
+        { this.renderRoutes() }
       </div>
     );
   }
